@@ -1,0 +1,100 @@
+<%- include('../../partials/head') %>
+
+    <div class="flex min-h-screen bg-background-light dark:bg-background-dark">
+        <%- include('../../partials/sidebar') %>
+
+            <div class="flex-1 flex flex-col min-h-screen lg:ml-64 transition-all duration-300">
+                <%- include('../../partials/navbar') %>
+
+                    <main class="flex-1 p-6 space-y-6 pb-24 lg:pb-8">
+                        <div class="flex items-center justify-between">
+                            <h1 class="text-2xl font-bold text-slate-800 dark:text-white">Semua Penarikan</h1>
+                            <div class="flex gap-2">
+                                <a href="/admin/withdrawals?status=pending"
+                                    class="px-4 py-2 bg-warning text-white text-sm font-medium rounded-lg hover:bg-yellow-600 transition-colors">Pending</a>
+                                <a href="/admin/withdrawals"
+                                    class="px-4 py-2 bg-slate-200 text-slate-700 text-sm font-medium rounded-lg hover:bg-slate-300 transition-colors dark:bg-slate-700 dark:text-slate-200 dark:hover:bg-slate-600">All</a>
+                            </div>
+                        </div>
+
+                        <div
+                            class="bg-white dark:bg-dark-sidebar rounded-2xl shadow-soft border border-slate-100 dark:border-slate-700 overflow-hidden">
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-sm text-left text-slate-500 dark:text-slate-400">
+                                    <thead
+                                        class="text-xs text-slate-700 uppercase bg-slate-50 dark:bg-slate-800 dark:text-slate-400">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-4">ID</th>
+                                            <th scope="col" class="px-6 py-4">User</th>
+                                            <th scope="col" class="px-6 py-4">Tanggal</th>
+                                            <th scope="col" class="px-6 py-4">Bank</th>
+                                            <th scope="col" class="px-6 py-4">Rekening</th>
+                                            <th scope="col" class="px-6 py-4">Total</th>
+                                            <th scope="col" class="px-6 py-4">Status</th>
+                                            <th scope="col" class="px-6 py-4 text-right">Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-slate-100 dark:divide-slate-700">
+                                        <% withdrawals.forEach(wd=> { %>
+                                            <tr
+                                                class="bg-white border-b dark:bg-dark-sidebar dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                                <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">#<%=
+                                                        wd.id %>
+                                                </td>
+                                                <td class="px-6 py-4 font-semibold text-slate-800 dark:text-white">
+                                                    <%= wd.user_name %>
+                                                </td>
+                                                <td class="px-6 py-4">
+                                                    <%= new Date(wd.created_at).toLocaleDateString() %>
+                                                </td>
+                                                <td class="px-6 py-4">
+                                                    <%= wd.bank_name %>
+                                                </td>
+                                                <td class="px-6 py-4">
+                                                    <%= wd.account_number %> (<%= wd.account_holder %>)
+                                                </td>
+                                                <td class="px-6 py-4 font-bold text-primary">Rp <%=
+                                                        wd.amount.toLocaleString('id-ID') %>
+                                                </td>
+                                                <td class="px-6 py-4">
+                                                    <span
+                                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium 
+                                            <%= wd.status === 'pending' ? 'bg-warning/10 text-warning' : 
+                                               wd.status === 'approved' ? 'bg-success/10 text-success' : 'bg-danger/10 text-danger' %>">
+                                                        <%= wd.status.charAt(0).toUpperCase() + wd.status.slice(1) %>
+                                                    </span>
+                                                </td>
+                                                <td class="px-6 py-4 text-right flex justify-end gap-2">
+                                                    <% if (wd.status==='pending' ) { %>
+                                                        <form action="/admin/withdrawals/approve" method="POST">
+                                                            <input type="hidden" name="id" value="<%= wd.id %>">
+                                                            <button type="submit"
+                                                                class="text-green-600 hover:text-green-900 dark:text-green-400 dark:hover:text-green-300"
+                                                                title="Approve">
+                                                                <span class="material-icons-round">check_circle</span>
+                                                            </button>
+                                                        </form>
+                                                        <form action="/admin/withdrawals/reject" method="POST">
+                                                            <input type="hidden" name="id" value="<%= wd.id %>">
+                                                            <button type="submit"
+                                                                class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300"
+                                                                title="Reject">
+                                                                <span class="material-icons-round">cancel</span>
+                                                            </button>
+                                                        </form>
+                                                        <% } else { %>
+                                                            <span class="text-slate-400">-</span>
+                                                            <% } %>
+                                                </td>
+                                            </tr>
+                                            <% }) %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </main>
+                    <%- include('../../partials/bottom-nav') %>
+            </div>
+    </div>
+
+    <%- include('../../partials/footer') %>

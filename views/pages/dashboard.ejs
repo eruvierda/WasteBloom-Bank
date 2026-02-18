@@ -1,0 +1,193 @@
+<%- include('../partials/head') %>
+
+    <div class="flex min-h-screen bg-background-light dark:bg-background-dark">
+        <%- include('../partials/sidebar') %>
+
+            <div class="flex-1 flex flex-col min-h-screen lg:ml-64 transition-all duration-300">
+                <%- include('../partials/navbar') %>
+
+                    <main class="flex-1 p-6 space-y-8 pb-24 lg:pb-8">
+                        <!-- Stat Cards Grid -->
+                        <section>
+                            <div class="flex items-center justify-between mb-4">
+                                <h2 class="text-lg font-bold text-slate-800 dark:text-white">Overview</h2>
+                                <span class="text-xs font-medium text-slate-500 dark:text-slate-400">Updated just
+                                    now</span>
+                            </div>
+                            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                                <!-- Balance Card (Blue/Primary) -->
+                                <div
+                                    class="bg-primary p-4 rounded-xl shadow-soft text-white relative overflow-hidden group">
+                                    <div
+                                        class="absolute -right-4 -top-4 w-24 h-24 bg-white opacity-10 rounded-full group-hover:scale-110 transition-transform duration-500">
+                                    </div>
+                                    <div class="flex justify-between items-start mb-3">
+                                        <div class="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
+                                            <span
+                                                class="material-icons-round text-white text-xl">account_balance_wallet</span>
+                                        </div>
+                                    </div>
+                                    <p class="text-primary-100 text-xs font-medium mb-1 opacity-90">Current Balance</p>
+                                    <h3 class="text-xl font-bold">Rp <%= user ? user.balance.toLocaleString('id-ID')
+                                            : '0' %>
+                                    </h3>
+                                </div>
+                                <!-- Transactions Card (Green) -->
+                                <div
+                                    class="bg-white dark:bg-dark-sidebar p-4 rounded-xl shadow-soft border-l-4 border-success relative">
+                                    <div class="flex justify-between items-start mb-3">
+                                        <div class="p-2 bg-success/10 rounded-lg">
+                                            <span class="material-icons-round text-success text-xl">recycling</span>
+                                        </div>
+                                    </div>
+                                    <p class="text-slate-500 dark:text-slate-400 text-xs font-medium mb-1">Waste
+                                        Recycled</p>
+                                    <h3 class="text-xl font-bold text-slate-800 dark:text-white">
+                                        <%= totalItems %> <span class="text-xs font-normal text-slate-400">Items</span>
+                                    </h3>
+                                </div>
+                                <!-- Weight Card (Yellow) -->
+                                <div
+                                    class="bg-white dark:bg-dark-sidebar p-4 rounded-xl shadow-soft border-l-4 border-warning relative">
+                                    <div class="flex justify-between items-start mb-3">
+                                        <div class="p-2 bg-warning/10 rounded-lg">
+                                            <span class="material-icons-round text-warning text-xl">scale</span>
+                                        </div>
+                                    </div>
+                                    <p class="text-slate-500 dark:text-slate-400 text-xs font-medium mb-1">Total Weight
+                                    </p>
+                                    <h3 class="text-xl font-bold text-slate-800 dark:text-white">
+                                        <%= totalWeight %> <span class="text-xs font-normal text-slate-400">kg</span>
+                                    </h3>
+                                </div>
+                                <!-- Total Earnings Card (Red) -->
+                                <div
+                                    class="bg-white dark:bg-dark-sidebar p-4 rounded-xl shadow-soft border-l-4 border-danger relative">
+                                    <div class="flex justify-between items-start mb-3">
+                                        <div class="p-2 bg-danger/10 rounded-lg">
+                                            <span class="material-icons-round text-danger text-xl">trending_up</span>
+                                        </div>
+                                    </div>
+                                    <p class="text-slate-500 dark:text-slate-400 text-xs font-medium mb-1">Total
+                                        Earnings</p>
+                                    <h3 class="text-xl font-bold text-slate-800 dark:text-white">Rp <%= user ?
+                                            user.balance.toLocaleString('id-ID') : '0' %>
+                                    </h3>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Quick Actions Slider -->
+                        <section>
+                            <div class="flex items-center justify-between mb-4">
+                                <h2 class="text-lg font-bold text-slate-800 dark:text-white">Quick Actions</h2>
+                            </div>
+                            <div class="flex overflow-x-auto gap-4 pb-4 -mx-5 px-5 lg:mx-0 lg:px-0 no-scrollbar snap-x">
+                                <!-- Action 1: Deposit -->
+                                <a href="/deposit"
+                                    class="snap-center shrink-0 w-64 bg-white dark:bg-dark-sidebar rounded-2xl p-5 shadow-soft border border-slate-100 dark:border-slate-700 relative overflow-hidden group">
+                                    <div
+                                        class="absolute top-0 right-0 w-20 h-20 bg-primary/5 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110">
+                                    </div>
+                                    <div class="flex items-center gap-4 mb-3">
+                                        <div
+                                            class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                                            <span class="material-icons-round">delete_outline</span>
+                                        </div>
+                                        <div>
+                                            <h3 class="font-bold text-slate-800 dark:text-white">Deposit Waste</h3>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400">Schedule pickup</p>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="w-full mt-2 py-2.5 bg-primary text-white text-sm font-medium rounded-lg hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20 text-center">
+                                        Start Deposit
+                                    </div>
+                                </a>
+                                <!-- Action 2: Withdraw -->
+                                <a href="/withdraw"
+                                    class="snap-center shrink-0 w-64 bg-white dark:bg-dark-sidebar rounded-2xl p-5 shadow-soft border border-slate-100 dark:border-slate-700 relative overflow-hidden group">
+                                    <div
+                                        class="absolute top-0 right-0 w-20 h-20 bg-success/5 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110">
+                                    </div>
+                                    <div class="flex items-center gap-4 mb-3">
+                                        <div
+                                            class="w-12 h-12 rounded-full bg-success/10 flex items-center justify-center text-success">
+                                            <span class="material-icons-round">payments</span>
+                                        </div>
+                                        <div>
+                                            <h3 class="font-bold text-slate-800 dark:text-white">Withdraw</h3>
+                                            <p class="text-xs text-slate-500 dark:text-slate-400">Transfer funds</p>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="w-full mt-2 py-2.5 bg-white border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-sm font-medium rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors text-center">
+                                        Request Payout
+                                    </div>
+                                </a>
+                            </div>
+                        </section>
+
+                        <!-- Recent Transactions -->
+                        <section>
+                            <div class="flex items-center justify-between mb-4">
+                                <h2 class="text-lg font-bold text-slate-800 dark:text-white">Recent Activity</h2>
+                                <a href="/transactions"
+                                    class="text-sm font-medium text-primary hover:text-primary/80">View All</a>
+                            </div>
+                            <div
+                                class="bg-white dark:bg-dark-sidebar rounded-2xl shadow-soft border border-slate-100 dark:border-slate-700 divide-y divide-slate-100 dark:divide-slate-700">
+                                <% if (transactions && transactions.length> 0) { %>
+                                    <% transactions.forEach(txn=> { %>
+                                        <div
+                                            class="p-4 flex items-center justify-between group cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors first:rounded-t-2xl last:rounded-b-2xl">
+                                            <div class="flex items-center gap-4">
+                                                <div
+                                                    class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+                                                    <span class="material-icons-round text-slate-500 text-lg">
+                                                        <%= txn.waste_name.toLowerCase().includes('plastic')
+                                                            ? 'local_drink' :
+                                                            txn.waste_name.toLowerCase().includes('paper')
+                                                            ? 'description' :
+                                                            txn.waste_name.toLowerCase().includes('metal') ? 'build'
+                                                            : 'recycling' %>
+                                                    </span>
+                                                </div>
+                                                <div>
+                                                    <h4 class="text-sm font-semibold text-slate-900 dark:text-white">
+                                                        <%= txn.waste_name %>
+                                                    </h4>
+                                                    <p class="text-xs text-slate-500 dark:text-slate-400">
+                                                        <%= new Date(txn.created_at).toLocaleDateString() %> • <%=
+                                                                txn.weight %>
+                                                                <%= txn.unit %>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="text-right">
+                                                <p class="text-sm font-bold text-primary">+Rp <%=
+                                                        txn.total_amount.toLocaleString('id-ID') %>
+                                                </p>
+                                                <span
+                                                    class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium 
+                                        <%= txn.status === 'pending' ? 'bg-warning/10 text-warning' : 
+                                           txn.status === 'approved' ? 'bg-success/10 text-success' : 'bg-danger/10 text-danger' %> mt-1">
+                                                    <%= txn.status.charAt(0).toUpperCase() + txn.status.slice(1) %>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <% }) %>
+                                            <% } else { %>
+                                                <div class="p-8 text-center text-slate-500 dark:text-slate-400">
+                                                    No recent transactions found.
+                                                </div>
+                                                <% } %>
+                            </div>
+                        </section>
+                    </main>
+
+                    <%- include('../partials/bottom-nav') %>
+            </div>
+    </div>
+
+    <%- include('../partials/footer') %>

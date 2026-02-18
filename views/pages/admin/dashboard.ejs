@@ -1,0 +1,183 @@
+<%- include('../../partials/head') %>
+
+    <div class="flex min-h-screen bg-background-light dark:bg-background-dark">
+        <%- include('../../partials/sidebar') %>
+
+            <div class="flex-1 flex flex-col min-h-screen lg:ml-64 transition-all duration-300">
+                <%- include('../../partials/navbar') %>
+
+                    <main class="flex-1 p-6 space-y-8 pb-24 lg:pb-8">
+                        <!-- Header Stats -->
+                        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                            <div
+                                class="bg-white dark:bg-dark-sidebar p-5 rounded-xl shadow-soft border border-slate-100 dark:border-slate-700">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <div class="p-2 bg-primary/10 rounded-lg text-primary">
+                                        <span class="material-icons-round">group</span>
+                                    </div>
+                                    <span
+                                        class="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Total
+                                        Users</span>
+                                </div>
+                                <p class="text-2xl font-bold text-slate-800 dark:text-white">
+                                    <%= stats.totalUsers %>
+                                </p>
+                            </div>
+                            <div
+                                class="bg-white dark:bg-dark-sidebar p-5 rounded-xl shadow-soft border border-slate-100 dark:border-slate-700">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <div class="p-2 bg-success/10 rounded-lg text-success">
+                                        <span class="material-icons-round">recycling</span>
+                                    </div>
+                                    <span
+                                        class="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Total
+                                        Waste</span>
+                                </div>
+                                <p class="text-2xl font-bold text-slate-800 dark:text-white">
+                                    <%= stats.totalWeight %> <span class="text-sm font-normal text-slate-400">kg</span>
+                                </p>
+                            </div>
+                            <div
+                                class="bg-white dark:bg-dark-sidebar p-5 rounded-xl shadow-soft border border-slate-100 dark:border-slate-700">
+                                <div
+                                    class="bg-orange-50 dark:bg-orange-900/20 p-2 rounded-lg text-orange-600 dark:text-orange-400 w-fit mb-2">
+                                    <span class="material-icons-round">pending_actions</span>
+                                </div>
+                                <div class="flex justify-between items-end">
+                                    <div>
+                                        <p class="text-2xl font-bold text-slate-800 dark:text-white">
+                                            <%= stats.pendingTransactions %>
+                                        </p>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400">Pending Deposits</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                class="bg-white dark:bg-dark-sidebar p-5 rounded-xl shadow-soft border border-slate-100 dark:border-slate-700">
+                                <div
+                                    class="bg-blue-50 dark:bg-blue-900/20 p-2 rounded-lg text-blue-600 dark:text-blue-400 w-fit mb-2">
+                                    <span class="material-icons-round">payments</span>
+                                </div>
+                                <div class="flex justify-between items-end">
+                                    <div>
+                                        <p class="text-2xl font-bold text-slate-800 dark:text-white">
+                                            <%= stats.pendingWithdrawals %>
+                                        </p>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400">Pending Withdrawals</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <!-- Needs Action: Pending Transactions -->
+                            <section
+                                class="bg-white dark:bg-dark-sidebar rounded-xl shadow-soft border border-slate-100 dark:border-slate-700 p-6">
+                                <div class="flex justify-between items-center mb-6">
+                                    <h2 class="text-lg font-bold text-slate-800 dark:text-white">Pending Deposits</h2>
+                                    <a href="/admin/transactions?status=pending"
+                                        class="text-sm text-primary font-medium hover:text-primary/80">View All</a>
+                                </div>
+                                <div class="space-y-4">
+                                    <% if (pendingTxns.length> 0) { %>
+                                        <% pendingTxns.forEach(txn=> { %>
+                                            <div
+                                                class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-100 dark:border-slate-700">
+                                                <div class="flex items-center gap-3">
+                                                    <div
+                                                        class="bg-white dark:bg-slate-700 p-2 rounded-full border border-slate-100 dark:border-slate-600">
+                                                        <span
+                                                            class="material-icons-round text-slate-500 text-base">recycling</span>
+                                                    </div>
+                                                    <div>
+                                                        <h3
+                                                            class="font-semibold text-sm text-slate-800 dark:text-white">
+                                                            <%= txn.user_name %>
+                                                        </h3>
+                                                        <p class="text-xs text-slate-500 dark:text-slate-400">
+                                                            <%= txn.waste_name %> • <strong>
+                                                                    <%= txn.weight %>
+                                                                        <%= txn.unit %>
+                                                                </strong>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="flex gap-2">
+                                                    <!-- Actions would be forms ideally, but for now simple buttons or links -->
+                                                    <!-- Rejection Modal Trigger (Validation later) -->
+                                                    <!-- For prototype: Quick approve -->
+                                                    <form action="/admin/transactions/approve" method="POST"
+                                                        class="inline">
+                                                        <input type="hidden" name="id" value="<%= txn.id %>">
+                                                        <button type="submit"
+                                                            class="w-8 h-8 flex items-center justify-center rounded-full bg-green-50 text-green-600 hover:bg-green-100 dark:bg-green-900/20 dark:text-green-400 transition-colors"
+                                                            title="Approve">
+                                                            <span class="material-icons-round text-lg">check</span>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <% }) %>
+                                                <% } else { %>
+                                                    <p class="text-center text-sm text-slate-500">No pending deposits.
+                                                    </p>
+                                                    <% } %>
+                                </div>
+                            </section>
+
+                            <!-- Needs Action: Pending Withdrawals -->
+                            <section
+                                class="bg-white dark:bg-dark-sidebar rounded-xl shadow-soft border border-slate-100 dark:border-slate-700 p-6">
+                                <div class="flex justify-between items-center mb-6">
+                                    <h2 class="text-lg font-bold text-slate-800 dark:text-white">Pending Withdrawals
+                                    </h2>
+                                    <a href="/admin/withdrawals?status=pending"
+                                        class="text-sm text-primary font-medium hover:text-primary/80">View All</a>
+                                </div>
+                                <div class="space-y-4">
+                                    <% if (pendingWithdrawals.length> 0) { %>
+                                        <% pendingWithdrawals.forEach(wd=> { %>
+                                            <div
+                                                class="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg border border-slate-100 dark:border-slate-700">
+                                                <div class="flex items-center gap-3">
+                                                    <div
+                                                        class="bg-white dark:bg-slate-700 p-2 rounded-full border border-slate-100 dark:border-slate-600">
+                                                        <span
+                                                            class="material-icons-round text-slate-500 text-base">payments</span>
+                                                    </div>
+                                                    <div>
+                                                        <h3
+                                                            class="font-semibold text-sm text-slate-800 dark:text-white">
+                                                            <%= wd.user_name %>
+                                                        </h3>
+                                                        <p class="text-xs text-slate-500 dark:text-slate-400">
+                                                            <%= wd.bank_name %> • <strong>Rp <%=
+                                                                        wd.amount.toLocaleString('id-ID') %></strong>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <form action="/admin/withdrawals/approve" method="POST" class="inline">
+                                                    <input type="hidden" name="id" value="<%= wd.id %>">
+                                                    <button type="submit"
+                                                        class="w-8 h-8 flex items-center justify-center rounded-full bg-green-50 text-green-600 hover:bg-green-100 dark:bg-green-900/20 dark:text-green-400 transition-colors"
+                                                        title="Approve">
+                                                        <span class="material-icons-round text-lg">check</span>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                            <% }) %>
+                                                <% } else { %>
+                                                    <p class="text-center text-sm text-slate-500">No pending
+                                                        withdrawals.</p>
+                                                    <% } %>
+                                </div>
+                            </section>
+                        </div>
+
+                    </main>
+
+                    <%- include('../../partials/bottom-nav') %>
+            </div>
+    </div>
+
+    <%- include('../../partials/footer') %>

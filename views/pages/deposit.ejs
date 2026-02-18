@@ -1,0 +1,189 @@
+<%- include('../partials/head') %>
+
+    <div class="flex min-h-screen bg-background-light dark:bg-background-dark">
+        <%- include('../partials/sidebar') %>
+
+            <div class="flex-1 flex flex-col min-h-screen lg:ml-64 transition-all duration-300">
+                <%- include('../partials/navbar') %>
+
+                    <main class="flex-1 p-6 space-y-6 pb-24 lg:pb-8">
+                        <div class="flex items-center justify-between">
+                            <h1 class="text-2xl font-bold text-slate-800 dark:text-white">Setor Sampah</h1>
+                            <nav class="hidden sm:flex" aria-label="Breadcrumb">
+                                <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                                    <li class="inline-flex items-center">
+                                        <a href="/dashboard"
+                                            class="inline-flex items-center text-sm font-medium text-slate-700 hover:text-primary dark:text-slate-400 dark:hover:text-white">
+                                            <span class="material-icons-round text-base mr-1">home</span>
+                                            Home
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="flex items-center">
+                                            <span
+                                                class="material-icons-round text-slate-400 text-base">chevron_right</span>
+                                            <span
+                                                class="ml-1 text-sm font-medium text-slate-500 md:ml-2 dark:text-slate-400">Setor
+                                                Sampah</span>
+                                        </div>
+                                    </li>
+                                </ol>
+                            </nav>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                            <!-- Deposit Form -->
+                            <div class="lg:col-span-2 space-y-6">
+                                <div
+                                    class="bg-white dark:bg-dark-sidebar rounded-2xl shadow-soft p-6 border border-slate-100 dark:border-slate-700">
+                                    <h2 class="text-lg font-bold text-slate-800 dark:text-white mb-4">Form Setor Sampah
+                                    </h2>
+
+                                    <% if (typeof error !=='undefined' && error) { %>
+                                        <div
+                                            class="bg-red-50 text-red-500 text-sm p-3 rounded-lg border border-red-100 flex items-center gap-2 mb-4">
+                                            <span class="material-icons-round text-base">error_outline</span>
+                                            <%= error %>
+                                        </div>
+                                        <% } %>
+                                            <% if (typeof success !=='undefined' && success) { %>
+                                                <div
+                                                    class="bg-green-50 text-green-600 text-sm p-3 rounded-lg border border-green-100 flex items-center gap-2 mb-4">
+                                                    <span
+                                                        class="material-icons-round text-base">check_circle_outline</span>
+                                                    <%= success %>
+                                                </div>
+                                                <% } %>
+
+                                                    <form action="/deposit" method="POST" class="space-y-4">
+                                                        <div>
+                                                            <label
+                                                                class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1"
+                                                                for="waste_type">Jenis Sampah</label>
+                                                            <select id="waste_type" name="waste_type_id"
+                                                                class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-sm focus:ring-primary focus:border-primary block"
+                                                                required onchange="updateEstimate()">
+                                                                <option value="" disabled selected>Pilih jenis sampah...
+                                                                </option>
+                                                                <% wasteTypes.forEach(type=> { %>
+                                                                    <option value="<%= type.id %>"
+                                                                        data-price="<%= type.price_per_kg %>"
+                                                                        data-unit="<%= type.unit %>">
+                                                                        <%= type.name %> - <%= type.category %> (Rp <%=
+                                                                                    type.price_per_kg %>/<%= type.unit
+                                                                                        %>)
+                                                                    </option>
+                                                                    <% }) %>
+                                                            </select>
+                                                        </div>
+
+                                                        <div>
+                                                            <label
+                                                                class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1"
+                                                                for="weight">Berat / Jumlah (kg/pcs)</label>
+                                                            <input type="number" step="0.1" min="0.1" id="weight"
+                                                                name="weight"
+                                                                class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-sm focus:ring-primary focus:border-primary block"
+                                                                placeholder="0.00" required oninput="updateEstimate()">
+                                                        </div>
+
+                                                        <div
+                                                            class="bg-primary/5 rounded-xl p-4 border border-primary/20 flex flex-col sm:flex-row justify-between items-center gap-4">
+                                                            <div>
+                                                                <span
+                                                                    class="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider">Estimasi
+                                                                    Pendapatan</span>
+                                                                <p class="text-2xl font-bold text-primary"
+                                                                    id="estimate">Rp 0</p>
+                                                            </div>
+                                                            <div class="text-right">
+                                                                <span
+                                                                    class="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider block">Harga
+                                                                    Satuan</span>
+                                                                <p class="text-sm font-semibold text-slate-700 dark:text-slate-200"
+                                                                    id="unit_price">-</p>
+                                                            </div>
+                                                        </div>
+
+                                                        <div>
+                                                            <label
+                                                                class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1"
+                                                                for="notes">Catatan (Opsional)</label>
+                                                            <textarea id="notes" name="notes" rows="3"
+                                                                class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-sm focus:ring-primary focus:border-primary block"
+                                                                placeholder="Tambahkan catatan jika perlu..."></textarea>
+                                                        </div>
+
+                                                        <button type="submit"
+                                                            class="w-full py-3.5 bg-success hover:bg-green-700 text-white font-semibold rounded-xl shadow-lg shadow-success/30 transition-all flex items-center justify-center gap-2">
+                                                            <span class="material-icons-round">check_circle</span>
+                                                            Submit Setoran
+                                                        </button>
+                                                    </form>
+                                </div>
+                            </div>
+
+                            <!-- Balance & Info -->
+                            <div class="space-y-6">
+                                <div class="bg-primary p-6 rounded-2xl shadow-soft text-white relative overflow-hidden">
+                                    <div class="absolute -right-6 -top-6 w-32 h-32 bg-white opacity-10 rounded-full">
+                                    </div>
+                                    <p class="text-primary-100 text-sm font-medium mb-1 opacity-90">Saldo Anda</p>
+                                    <h3 class="text-3xl font-bold">Rp <%= user ? user.balance.toLocaleString('id-ID')
+                                            : '0' %>
+                                    </h3>
+                                    <p class="text-xs text-primary-100 mt-2">Saldo saat ini yang dapat ditarik.</p>
+                                </div>
+
+                                <div
+                                    class="bg-white dark:bg-dark-sidebar rounded-2xl shadow-soft p-6 border border-slate-100 dark:border-slate-700">
+                                    <h3 class="font-bold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
+                                        <span class="material-icons-round text-warning">info</span>
+                                        Informasi Kategori
+                                    </h3>
+                                    <ul class="space-y-3">
+                                        <li class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-400">
+                                            <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+                                            Plastik (Botol, Gelas, dll)
+                                        </li>
+                                        <li class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-400">
+                                            <span class="w-2 h-2 rounded-full bg-yellow-500"></span>
+                                            Kertas (Kardus, HVS, Koran)
+                                        </li>
+                                        <li class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-400">
+                                            <span class="w-2 h-2 rounded-full bg-gray-500"></span>
+                                            Logam (Besi, Aluminium)
+                                        </li>
+                                        <li class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-400">
+                                            <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                                            Kaca (Botol Sirup, Kecap)
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                    <%- include('../partials/bottom-nav') %>
+            </div>
+    </div>
+
+    <script>
+        function updateEstimate() {
+            const select = document.getElementById('waste_type');
+            const weightInput = document.getElementById('weight');
+            const estimateEl = document.getElementById('estimate');
+            const unitPriceEl = document.getElementById('unit_price');
+
+            const option = select.options[select.selectedIndex];
+            const price = option.getAttribute('data-price') || 0;
+            const unit = option.getAttribute('data-unit') || 'kg';
+            const weight = parseFloat(weightInput.value) || 0;
+
+            const total = price * weight;
+
+            unitPriceEl.textContent = price > 0 ? `Rp ${parseInt(price).toLocaleString('id-ID')}/${unit}` : '-';
+            estimateEl.textContent = `Rp ${total.toLocaleString('id-ID')}`;
+        }
+    </script>
+
+    <%- include('../partials/footer') %>

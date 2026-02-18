@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bank Sampah - User Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d6dfd",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#0f1723",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Hide scrollbar for clean mobile look */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-white h-screen flex justify-center overflow-hidden">
+<!-- Mobile Container -->
+<div class="w-full max-w-md h-full bg-background-light dark:bg-background-dark flex flex-col relative shadow-2xl overflow-hidden">
+<!-- Top Navigation Bar -->
+<header class="px-5 pt-12 pb-4 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between sticky top-0 z-20">
+<button class="p-2 -ml-2 text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white transition-colors rounded-full hover:bg-slate-100 dark:hover:bg-slate-800">
+<span class="material-icons">arrow_back</span>
+</button>
+<h1 class="text-lg font-semibold tracking-tight">User Management</h1>
+<button class="p-2 -mr-2 text-primary hover:text-blue-700 transition-colors rounded-full hover:bg-blue-50 dark:hover:bg-slate-800">
+<span class="material-icons">person_add</span>
+</button>
+</header>
+<!-- Search & Filters Area -->
+<div class="px-5 py-4 bg-white dark:bg-slate-900 shadow-sm z-10 space-y-4">
+<!-- Search Bar -->
+<div class="relative">
+<span class="material-icons absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full pl-10 pr-4 py-3 bg-slate-50 dark:bg-slate-800 border-none rounded-xl text-sm focus:ring-2 focus:ring-primary text-slate-900 dark:text-white placeholder-slate-400 outline-none transition-shadow" placeholder="Search name or email..." type="text"/>
+</div>
+<!-- Filter Pills -->
+<div class="flex gap-2 overflow-x-auto no-scrollbar pb-1">
+<button class="px-4 py-1.5 bg-primary text-white text-sm font-medium rounded-full shadow-sm whitespace-nowrap">
+                    All Users
+                </button>
+<button class="px-4 py-1.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-sm font-medium rounded-full whitespace-nowrap hover:border-primary/50 hover:text-primary transition-colors">
+                    Admins
+                </button>
+<button class="px-4 py-1.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-sm font-medium rounded-full whitespace-nowrap hover:border-primary/50 hover:text-primary transition-colors">
+                    Regular Users
+                </button>
+<button class="px-4 py-1.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 text-sm font-medium rounded-full whitespace-nowrap hover:border-primary/50 hover:text-primary transition-colors">
+                    High Balance
+                </button>
+</div>
+</div>
+<!-- User List (Scrollable Area) -->
+<main class="flex-1 overflow-y-auto p-4 space-y-3 no-scrollbar pb-24">
+<!-- Summary Stats Card -->
+<div class="bg-gradient-to-r from-primary to-blue-600 rounded-2xl p-5 text-white mb-4 shadow-lg shadow-primary/20 relative overflow-hidden">
+<div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-white opacity-10 rounded-full blur-xl"></div>
+<div class="relative z-10 flex justify-between items-end">
+<div>
+<p class="text-blue-100 text-xs font-medium uppercase tracking-wider mb-1">Total Users</p>
+<h2 class="text-3xl font-bold">1,248</h2>
+</div>
+<div class="text-right">
+<p class="text-blue-100 text-xs font-medium uppercase tracking-wider mb-1">Active Today</p>
+<p class="text-xl font-semibold">142</p>
+</div>
+</div>
+</div>
+<!-- List Header -->
+<div class="flex items-center justify-between px-1 mb-2">
+<h3 class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Registered Accounts</h3>
+<span class="text-xs text-slate-400">Sort by: <span class="text-slate-600 dark:text-slate-300 font-medium">Newest</span></span>
+</div>
+<!-- User Item 1 -->
+<div class="group bg-white dark:bg-slate-800 rounded-xl p-4 shadow-sm border border-slate-100 dark:border-slate-700 hover:border-primary/30 transition-all active:scale-[0.99]">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-700 overflow-hidden relative flex-shrink-0">
+<img alt="Profile portrait of a man" class="w-full h-full object-cover" data-alt="Close up portrait of a smiling man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGVB70TTuOROAZga1XcS1MbYKqjjgMfHnj0sDokfoR0CvJb9mOZDqqf3PgekrCnG0Z2uC9oPtsdYVUsq65VWP7EZxkt7a_tiZi_dvqy9WgRmp8Ed7gFV9ocB3-JTMjOGxBWwGWRdtg3DUIh2sLcG4KB8SuSef0BqW6r2sQeGTGFe2UBuAWkYzYKpxWT-LyLLo-aRVpBs2gK5DLouEFZ0AUtLvIJKwpDxQ851FrsHrhNlDSW3yUqeXK64KcYecoczrdqnbXj5tcrrg"/>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h4 class="font-semibold text-slate-900 dark:text-white">Budi Santoso</h4>
+<span class="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide">User</span>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">budi.santoso@gmail.com</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-primary">Rp 150.000</p>
+<p class="text-[10px] text-slate-400 mt-0.5">Balance</p>
+</div>
+</div>
+<!-- Action Buttons (Visible on tap or expand, here shown inline for simplicity in list view) -->
+<div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-700 flex justify-end gap-3 opacity-0 group-hover:opacity-100 transition-opacity h-0 group-hover:h-auto overflow-hidden">
+<button class="text-xs font-medium text-slate-500 hover:text-primary flex items-center gap-1">
+<span class="material-icons text-sm">visibility</span> Details
+                    </button>
+<button class="text-xs font-medium text-slate-500 hover:text-primary flex items-center gap-1">
+<span class="material-icons text-sm">edit</span> Edit
+                    </button>
+<button class="text-xs font-medium text-red-500 hover:text-red-600 flex items-center gap-1">
+<span class="material-icons text-sm">delete</span> Delete
+                    </button>
+</div>
+</div>
+<!-- User Item 2 -->
+<div class="bg-white dark:bg-slate-800 rounded-xl p-4 shadow-sm border border-slate-100 dark:border-slate-700 relative overflow-hidden">
+<!-- Swipe indicator hint -->
+<div class="absolute right-0 top-0 bottom-0 w-1 bg-gradient-to-l from-slate-200 to-transparent opacity-50"></div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/20 text-purple-600 dark:text-purple-300 flex items-center justify-center text-lg font-bold flex-shrink-0">
+                            SA
+                        </div>
+<div>
+<div class="flex items-center gap-2">
+<h4 class="font-semibold text-slate-900 dark:text-white">Siti Aminah</h4>
+<span class="bg-primary/10 text-primary text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide">Admin</span>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">siti.admin@banksampah.id</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-slate-400">-</p>
+<p class="text-[10px] text-slate-400 mt-0.5">Balance</p>
+</div>
+</div>
+</div>
+<!-- User Item 3 (Swipe Revealed State Simulation) -->
+<div class="relative rounded-xl overflow-hidden shadow-sm">
+<!-- Actions Background -->
+<div class="absolute inset-0 flex flex-row-reverse">
+<div class="bg-red-500 w-20 flex items-center justify-center text-white cursor-pointer">
+<span class="material-icons">delete</span>
+</div>
+<div class="bg-primary w-20 flex items-center justify-center text-white cursor-pointer border-r border-white/20">
+<span class="material-icons">edit</span>
+</div>
+</div>
+<!-- Content (Shifted left to simulate swipe) -->
+<div class="bg-white dark:bg-slate-800 p-4 border border-slate-100 dark:border-slate-700 transform -translate-x-40 transition-transform">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-700 overflow-hidden relative flex-shrink-0">
+<img alt="Portrait of a serious man" class="w-full h-full object-cover" data-alt="Portrait of a man with beard" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCp1Mh-66AJNQIAaPbbpH58XV62KnGcRMdpFlRjhCSPjjXP6tIaFW9Eixg-xMROVyr54cSIVXvAjgq2eWY6QKgJPMro9989E-TiOYVQgXzmZN_BmTgvzkBBB3kLTuOzBgqYl_LZd9q_RRQdmmXuz7b-ghaTIxtmAeMqkmmIouwz-EuD1WrJfJr1we7Q1Lf3oDsJzrfwR7RkWdXjwaRM0Jge83PzQ-2emZ83-gAQVp2hkPLPdpFrwKC1LEksLvm9eIrYuQWDHVj-laI"/>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h4 class="font-semibold text-slate-900 dark:text-white">Rizky Ramadhan</h4>
+<span class="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide">User</span>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">rizky.r@yahoo.com</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-primary">Rp 45.500</p>
+<p class="text-[10px] text-slate-400 mt-0.5">Balance</p>
+</div>
+</div>
+</div>
+</div>
+<!-- User Item 4 -->
+<div class="bg-white dark:bg-slate-800 rounded-xl p-4 shadow-sm border border-slate-100 dark:border-slate-700 hover:border-primary/30 transition-all active:scale-[0.99]">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-orange-100 dark:bg-orange-900/20 text-orange-600 dark:text-orange-300 flex items-center justify-center text-lg font-bold flex-shrink-0">
+                            DN
+                        </div>
+<div>
+<div class="flex items-center gap-2">
+<h4 class="font-semibold text-slate-900 dark:text-white">Dewi Nurhaliza</h4>
+<span class="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide">User</span>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">dewi.nur@gmail.com</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-primary">Rp 312.000</p>
+<p class="text-[10px] text-slate-400 mt-0.5">Balance</p>
+</div>
+</div>
+</div>
+<!-- User Item 5 -->
+<div class="bg-white dark:bg-slate-800 rounded-xl p-4 shadow-sm border border-slate-100 dark:border-slate-700 hover:border-primary/30 transition-all active:scale-[0.99]">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-slate-100 dark:bg-slate-700 overflow-hidden relative flex-shrink-0">
+<img alt="Portrait of a woman" class="w-full h-full object-cover" data-alt="Portrait of a smiling woman with glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3KlkUo4CGX1Dj0OncmvpY1RH2PzulK8CuErrBBxQqO8VYLbpgeJjA3yyItSO41eG8E0f25Ue-t6gRsG_23KvBL9TGsJ7ebBG_LUYkGEfwXp8zCwKZB2Fh-DfSeogTwODZk1lO2MDrKbHWz2ycbwa_fZ0E_R9lUtr2v2o8FJsL7yKOd8ey2qt3In7PEwXNUnmypeTjKzBbPkaIgGM3k0qwC7Q7q9NzJAoeoR92hy_BL06t-GOE8s2G4nhOg3RY2iRZlw6pP2oaV7A"/>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h4 class="font-semibold text-slate-900 dark:text-white">Ayu Lestari</h4>
+<span class="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide">User</span>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">ayu.l@outlook.com</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-primary">Rp 12.500</p>
+<p class="text-[10px] text-slate-400 mt-0.5">Balance</p>
+</div>
+</div>
+</div>
+<!-- Loading Skeleton Item -->
+<div class="bg-white dark:bg-slate-800 rounded-xl p-4 shadow-sm border border-slate-100 dark:border-slate-700 animate-pulse">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3 w-full">
+<div class="w-12 h-12 rounded-full bg-slate-200 dark:bg-slate-700 flex-shrink-0"></div>
+<div class="flex-1 space-y-2">
+<div class="h-4 bg-slate-200 dark:bg-slate-700 rounded w-1/3"></div>
+<div class="h-3 bg-slate-200 dark:bg-slate-700 rounded w-1/2"></div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button (Optional Alternative to Top Nav) -->
+<!-- 
+        <button class="absolute bottom-6 right-6 w-14 h-14 bg-primary text-white rounded-full shadow-lg shadow-primary/40 flex items-center justify-center hover:scale-105 transition-transform z-30">
+            <span class="material-icons text-2xl">add</span>
+        </button> 
+        -->
+<!-- Bottom Navigation (Context) -->
+<nav class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 px-6 py-3 flex justify-between items-center z-20">
+<button class="flex flex-col items-center gap-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300">
+<span class="material-icons text-2xl">dashboard</span>
+<span class="text-[10px] font-medium">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-icons text-2xl">people</span>
+<span class="text-[10px] font-medium">Users</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300">
+<span class="material-icons text-2xl">account_balance_wallet</span>
+<span class="text-[10px] font-medium">Finance</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300">
+<span class="material-icons text-2xl">settings</span>
+<span class="text-[10px] font-medium">Settings</span>
+</button>
+</nav>
+</div>
+</body></html>

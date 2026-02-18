@@ -1,0 +1,123 @@
+<%- include('../partials/head') %>
+
+    <div class="flex min-h-screen bg-background-light dark:bg-background-dark">
+        <%- include('../partials/sidebar') %>
+
+            <div class="flex-1 flex flex-col min-h-screen lg:ml-64 transition-all duration-300">
+                <%- include('../partials/navbar') %>
+
+                    <main class="flex-1 p-6 space-y-6 pb-24 lg:pb-8">
+                        <div class="flex items-center justify-between">
+                            <h1 class="text-2xl font-bold text-slate-800 dark:text-white">Riwayat Transaksi</h1>
+                            <nav class="hidden sm:flex" aria-label="Breadcrumb">
+                                <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                                    <li class="inline-flex items-center">
+                                        <a href="/dashboard"
+                                            class="inline-flex items-center text-sm font-medium text-slate-700 hover:text-primary dark:text-slate-400 dark:hover:text-white">
+                                            <span class="material-icons-round text-base mr-1">home</span>
+                                            Home
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="flex items-center">
+                                            <span
+                                                class="material-icons-round text-slate-400 text-base">chevron_right</span>
+                                            <span
+                                                class="ml-1 text-sm font-medium text-slate-500 md:ml-2 dark:text-slate-400">Riwayat</span>
+                                        </div>
+                                    </li>
+                                </ol>
+                            </nav>
+                        </div>
+
+                        <div
+                            class="bg-white dark:bg-dark-sidebar rounded-2xl shadow-soft border border-slate-100 dark:border-slate-700 overflow-hidden">
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-sm text-left text-slate-500 dark:text-slate-400">
+                                    <thead
+                                        class="text-xs text-slate-700 uppercase bg-slate-50 dark:bg-slate-800 dark:text-slate-400">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-4">ID</th>
+                                            <th scope="col" class="px-6 py-4">Tanggal</th>
+                                            <th scope="col" class="px-6 py-4">Jenis Sampah</th>
+                                            <th scope="col" class="px-6 py-4">Berat</th>
+                                            <th scope="col" class="px-6 py-4">Total</th>
+                                            <th scope="col" class="px-6 py-4">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-slate-100 dark:divide-slate-700">
+                                        <% if (transactions && transactions.length> 0) { %>
+                                            <% transactions.forEach(txn=> { %>
+                                                <tr
+                                                    class="bg-white border-b dark:bg-dark-sidebar dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+                                                    <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">#
+                                                        <%= txn.id %>
+                                                    </td>
+                                                    <td class="px-6 py-4">
+                                                        <%= new Date(txn.created_at).toLocaleDateString() %>
+                                                    </td>
+                                                    <td class="px-6 py-4 font-medium text-slate-900 dark:text-white">
+                                                        <%= txn.waste_name %>
+                                                    </td>
+                                                    <td class="px-6 py-4">
+                                                        <%= txn.weight %>
+                                                            <%= txn.unit %>
+                                                    </td>
+                                                    <td class="px-6 py-4 font-bold text-primary">Rp <%=
+                                                            txn.total_amount.toLocaleString('id-ID') %>
+                                                    </td>
+                                                    <td class="px-6 py-4">
+                                                        <span
+                                                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium 
+                                                <%= txn.status === 'pending' ? 'bg-warning/10 text-warning' : 
+                                                   txn.status === 'approved' ? 'bg-success/10 text-success' : 'bg-danger/10 text-danger' %>">
+                                                            <% if (txn.status==='pending' ) { %><span
+                                                                    class="w-1.5 h-1.5 rounded-full bg-warning mr-1.5"></span>
+                                                                <% } %>
+                                                                    <% if (txn.status==='approved' ) { %><span
+                                                                            class="w-1.5 h-1.5 rounded-full bg-success mr-1.5"></span>
+                                                                        <% } %>
+                                                                            <% if (txn.status==='rejected' ) { %><span
+                                                                                    class="w-1.5 h-1.5 rounded-full bg-danger mr-1.5"></span>
+                                                                                <% } %>
+                                                                                    <%= txn.status.charAt(0).toUpperCase()
+                                                                                        + txn.status.slice(1) %>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                <% }) %>
+                                                    <% } else { %>
+                                                        <tr>
+                                                            <td colspan="6"
+                                                                class="px-6 py-8 text-center text-slate-500">Belum ada
+                                                                riwayat transaksi.</td>
+                                                        </tr>
+                                                        <% } %>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- Pagination (Placeholder) -->
+                            <div
+                                class="px-6 py-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between">
+                                <span class="text-xs text-slate-500 dark:text-slate-400">Showing <span
+                                        class="font-semibold text-slate-900 dark:text-white">
+                                        <%= transactions.length %>
+                                    </span> entries</span>
+                                <div class="inline-flex mt-2 xs:mt-0">
+                                    <button
+                                        class="px-4 py-2 text-xs font-medium text-white bg-primary rounded-l hover:bg-blue-600 dark:bg-primary dark:border-slate-700 dark:text-white dark:hover:text-white">
+                                        Prev
+                                    </button>
+                                    <button
+                                        class="px-4 py-2 text-xs font-medium text-white bg-primary border-0 border-l border-blue-600 rounded-r hover:bg-blue-600 dark:bg-primary dark:border-slate-700 dark:text-white dark:hover:text-white">
+                                        Next
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                    <%- include('../partials/bottom-nav') %>
+            </div>
+    </div>
+
+    <%- include('../partials/footer') %>

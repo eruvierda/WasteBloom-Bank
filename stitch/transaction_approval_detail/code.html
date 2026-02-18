@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Transaction Approval Detail - Bank Sampah</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#0d6dfd",
+              "background-light": "#f5f7f8",
+              "background-dark": "#0f1723",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        /* iOS-like safe area spacing */
+        .safe-area-bottom {
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+        
+        /* Custom scrollbar for cleaner look */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-gray-800 font-display flex justify-center items-center min-h-screen p-0 sm:p-4">
+<!-- Mobile Device Frame Wrapper (for presentation purposes on desktop) -->
+<div class="w-full max-w-md h-screen sm:h-[850px] bg-background-light dark:bg-background-dark sm:rounded-[2.5rem] overflow-hidden shadow-2xl relative flex flex-col">
+<!-- Status Bar Area (simulated) -->
+<div class="h-12 w-full bg-white dark:bg-slate-900 flex justify-between items-end px-6 pb-2 z-20 shrink-0">
+<span class="text-sm font-semibold text-gray-900 dark:text-white">9:41</span>
+<div class="flex items-center gap-1.5">
+<span class="material-icons text-[16px] text-gray-900 dark:text-white">signal_cellular_alt</span>
+<span class="material-icons text-[16px] text-gray-900 dark:text-white">wifi</span>
+<span class="material-icons text-[16px] text-gray-900 dark:text-white">battery_full</span>
+</div>
+</div>
+<!-- Dimmed Background Overlay (simulating modal context) -->
+<div class="absolute inset-0 bg-black/40 z-10 backdrop-blur-[2px]"></div>
+<!-- Modal/Sheet Content -->
+<div class="absolute bottom-0 left-0 right-0 top-16 bg-white dark:bg-slate-900 rounded-t-[2rem] flex flex-col z-30 shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.2)] animate-slide-up transform transition-transform duration-300">
+<!-- Handle Bar -->
+<div class="w-full flex justify-center pt-3 pb-1 shrink-0">
+<div class="w-12 h-1.5 bg-gray-300 dark:bg-slate-700 rounded-full"></div>
+</div>
+<!-- Header -->
+<div class="px-6 py-3 flex items-center justify-between border-b border-gray-100 dark:border-slate-800 shrink-0">
+<h1 class="text-xl font-bold text-gray-900 dark:text-white">Transaction Details</h1>
+<button class="p-2 -mr-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors rounded-full">
+<span class="material-icons">close</span>
+</button>
+</div>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto scrollbar-hide p-6 space-y-6">
+<!-- Status Badge -->
+<div class="flex justify-center">
+<span class="px-3 py-1 bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400 text-xs font-semibold rounded-full flex items-center gap-1">
+<span class="material-icons text-[14px]">hourglass_empty</span>
+                        Pending Approval
+                    </span>
+</div>
+<!-- Hero Value Section -->
+<div class="text-center space-y-1">
+<p class="text-sm text-gray-500 dark:text-slate-400 font-medium">Estimated Value</p>
+<h2 class="text-4xl font-bold text-primary dark:text-primary">Rp 12,500</h2>
+<p class="text-sm text-gray-400 dark:text-slate-500">Based on weight &amp; category rate</p>
+</div>
+<!-- User Profile Card -->
+<div class="bg-background-light dark:bg-slate-800 rounded-xl p-4 flex items-center gap-4 border border-gray-200 dark:border-slate-700/50 shadow-sm">
+<div class="relative">
+<img alt="User Avatar" class="w-12 h-12 rounded-full object-cover ring-2 ring-white dark:ring-slate-700 shadow-sm" data-alt="Portrait of a smiling young man, Budi Santoso" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFopLLUsxJt2X-cCehw0S47Z8D7bCp48gnJWYVxJhK_d51qhNkpfJz51sZ9bcL9iKtoCUybvE4e9W2aAUhPf5Sz1KWoao-NngwmkXyxk9yKn5MH-AsEAoHrDSVGWZH5wjDP83kDKQlc2kR_QmNAA1lDD1uT947M9eDh2vn6-tv0yN2YTOQaxENRDxemdNglHZt8gXWn_RK8sEDQbyk__KxZsb0DX4dECWG6ghrNT3hMd0yk4IY6WdSNAdFuSLBO93l3MMARZhi8cY"/>
+<div class="absolute -bottom-1 -right-1 bg-green-500 w-4 h-4 rounded-full border-2 border-white dark:border-slate-800"></div>
+</div>
+<div class="flex-1">
+<h3 class="text-sm font-bold text-gray-900 dark:text-white">Budi Santoso</h3>
+<p class="text-xs text-gray-500 dark:text-slate-400">Member #BS-8821</p>
+</div>
+<button class="text-primary text-xs font-semibold hover:underline">View Profile</button>
+</div>
+<!-- Transaction Details Grid -->
+<div class="space-y-3">
+<h4 class="text-xs font-bold text-gray-400 dark:text-slate-500 uppercase tracking-wider">Waste Details</h4>
+<div class="bg-white dark:bg-slate-800 rounded-xl border border-gray-100 dark:border-slate-700 overflow-hidden shadow-sm">
+<!-- Row 1: Category & Type -->
+<div class="flex border-b border-gray-100 dark:border-slate-700">
+<div class="flex-1 p-4 border-r border-gray-100 dark:border-slate-700">
+<p class="text-xs text-gray-500 dark:text-slate-400 mb-1">Category</p>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-blue-400"></span>
+<span class="font-semibold text-gray-900 dark:text-white text-sm">Plastic</span>
+</div>
+</div>
+<div class="flex-1 p-4">
+<p class="text-xs text-gray-500 dark:text-slate-400 mb-1">Type</p>
+<span class="font-semibold text-gray-900 dark:text-white text-sm">PET Bottles Clean</span>
+</div>
+</div>
+<!-- Row 2: Weight & Rate -->
+<div class="flex border-b border-gray-100 dark:border-slate-700">
+<div class="flex-1 p-4 border-r border-gray-100 dark:border-slate-700 bg-gray-50/50 dark:bg-slate-800/50">
+<p class="text-xs text-gray-500 dark:text-slate-400 mb-1">Total Weight</p>
+<span class="font-bold text-gray-900 dark:text-white text-lg">5.0 <span class="text-sm font-normal text-gray-500">kg</span></span>
+</div>
+<div class="flex-1 p-4 bg-gray-50/50 dark:bg-slate-800/50">
+<p class="text-xs text-gray-500 dark:text-slate-400 mb-1">Rate / kg</p>
+<span class="font-semibold text-gray-900 dark:text-white text-sm">Rp 2,500</span>
+</div>
+</div>
+<!-- Row 3: Timestamp & Location -->
+<div class="p-4 flex items-center justify-between">
+<div>
+<p class="text-xs text-gray-500 dark:text-slate-400 mb-1">Submitted</p>
+<div class="flex items-center gap-1 text-sm text-gray-700 dark:text-gray-300">
+<span class="material-icons text-[14px] text-gray-400">event</span>
+<span>14 Oct 2023, 10:30 AM</span>
+</div>
+</div>
+<div class="text-right">
+<p class="text-xs text-gray-500 dark:text-slate-400 mb-1">Collection Point</p>
+<span class="text-sm font-medium text-gray-900 dark:text-white">Unit RW 05</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Proof Image (Optional Context) -->
+<div class="space-y-3">
+<h4 class="text-xs font-bold text-gray-400 dark:text-slate-500 uppercase tracking-wider">Photo Evidence</h4>
+<div class="relative h-40 rounded-xl overflow-hidden group">
+<img alt="Plastic Bottles Waste" class="w-full h-full object-cover" data-alt="Pile of clean plastic bottles ready for recycling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCH4JdgEZdmvYnDB0ZpKYEz1qH2LV0qLx6fNw2uPnGhrme6dIB6g1M8fqOmDUAdqUCdGWVVzZHWIPdocEYnR3R9xYLGIFZaD1Iyyl6xT-cCeT1ZILCqhwnh_na0ZaIg9NbbejyF-Bs_n4CpCmQm0AxeX96Rowe0QxNaPX9TzDc2Ec7RtvBLtBOX6op7mD4rhVWBr76Te1-X-okCtzdURIKMekusTmpH7KK7rkKHYfp6MKAu-KDdz-fk_g3XrvEv1w7o3a6js7Bha_4"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors flex items-center justify-center">
+<button class="bg-white/90 dark:bg-slate-800/90 text-gray-900 dark:text-white px-3 py-1.5 rounded-lg text-xs font-medium shadow-lg flex items-center gap-2 backdrop-blur-sm">
+<span class="material-icons text-[14px]">visibility</span>
+                                View Full Image
+                            </button>
+</div>
+</div>
+</div>
+<!-- Rejection Reason Input -->
+<div class="pt-2">
+<label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2" for="reject-reason">
+                        Review Notes <span class="text-gray-400 font-normal">(Required if rejecting)</span>
+</label>
+<div class="relative">
+<textarea class="w-full rounded-xl border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800 text-gray-900 dark:text-white placeholder-gray-400 focus:border-primary focus:ring-primary sm:text-sm resize-none py-3 px-4 transition-shadow" id="reject-reason" placeholder="e.g. Items are not clean, wrong category..." rows="3"></textarea>
+<div class="absolute bottom-3 right-3 text-gray-400 text-xs">
+<span class="material-icons text-[16px]">edit_note</span>
+</div>
+</div>
+</div>
+<!-- Spacer for bottom safe area -->
+<div class="h-24"></div>
+</div>
+<!-- Fixed Action Bar -->
+<div class="absolute bottom-0 left-0 right-0 p-4 pt-4 bg-white dark:bg-slate-900 border-t border-gray-100 dark:border-slate-800 safe-area-bottom z-40">
+<div class="flex gap-3">
+<button class="flex-1 flex items-center justify-center gap-2 px-4 py-3.5 border-2 border-red-100 dark:border-red-900/30 bg-red-50 dark:bg-red-900/10 text-red-600 dark:text-red-400 font-semibold rounded-xl hover:bg-red-100 dark:hover:bg-red-900/20 active:scale-[0.98] transition-all">
+<span class="material-icons text-[20px]">block</span>
+                        Reject
+                    </button>
+<button class="flex-[2] flex items-center justify-center gap-2 px-4 py-3.5 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-xl shadow-lg shadow-green-200 dark:shadow-none active:scale-[0.98] transition-all">
+<span class="material-icons text-[20px]">check_circle</span>
+                        Approve Transaction
+                    </button>
+</div>
+</div>
+</div>
+</div>
+</body></html>
