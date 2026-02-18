@@ -1,0 +1,92 @@
+<%- include('../partials/head') %>
+
+    <div class="flex min-h-screen bg-background-light dark:bg-background-dark">
+        <% if (user.role==='admin' ) { %>
+            <%- include('../partials/sidebar') %>
+                <% } else { %>
+                    <%- include('../partials/sidebar') %>
+                        <% } %>
+
+                            <div class="flex-1 flex flex-col min-h-screen lg:ml-64 transition-all duration-300">
+                                <%- include('../partials/navbar') %>
+
+                                    <main class="flex-1 p-6 space-y-6 pb-24 lg:pb-8">
+                                        <h1 class="text-2xl font-bold text-slate-800 dark:text-white">Profil Saya</h1>
+
+                                        <div
+                                            class="bg-white dark:bg-dark-sidebar rounded-2xl shadow-soft border border-slate-100 dark:border-slate-700 p-6 max-w-2xl">
+                                            <div class="flex items-center gap-6 mb-8">
+                                                <div
+                                                    class="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-4xl border-4 border-primary/20">
+                                                    <%= user.name.charAt(0).toUpperCase() %>
+                                                </div>
+                                                <div>
+                                                    <h2 class="text-xl font-bold text-slate-800 dark:text-white">
+                                                        <%= user.name %>
+                                                    </h2>
+                                                    <p class="text-slate-500 dark:text-slate-400">
+                                                        <%= user.email %>
+                                                    </p>
+                                                    <span
+                                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary mt-2 uppercase tracking-wide">
+                                                        <%= user.role %>
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            <div class="space-y-4">
+                                                <div>
+                                                    <label
+                                                        class="block text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">Nomor
+                                                        Telepon</label>
+                                                    <p
+                                                        class="text-slate-800 dark:text-white font-medium border-b border-slate-100 dark:border-slate-700 pb-2">
+                                                        <%= user.phone || '-' %>
+                                                    </p>
+                                                </div>
+                                                <div>
+                                                    <label
+                                                        class="block text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">Alamat</label>
+                                                    <p
+                                                        class="text-slate-800 dark:text-white font-medium border-b border-slate-100 dark:border-slate-700 pb-2">
+                                                        <%= user.address || '-' %>
+                                                    </p>
+                                                </div>
+                                                <div>
+                                                    <label
+                                                        class="block text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">Saldo
+                                                        Saat Ini</label>
+                                                    <p class="text-2xl font-bold text-primary">Rp <%=
+                                                            user.balance.toLocaleString('id-ID') %>
+                                                    </p>
+                                                </div>
+                                                <div>
+                                                    <label
+                                                        class="block text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">Bergabung
+                                                        Sejak</label>
+                                                    <p
+                                                        class="text-slate-800 dark:text-white font-medium border-b border-slate-100 dark:border-slate-700 pb-2">
+                                                        <%= new Date(user.created_at).toLocaleDateString() %>
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <div class="mt-8 pt-6 border-t border-slate-100 dark:border-slate-700">
+                                                <button
+                                                    class="px-4 py-2 bg-slate-100 text-slate-600 rounded-lg hover:bg-slate-200 transition-colors dark:bg-slate-700 dark:text-slate-300 dark:hover:bg-slate-600"
+                                                    disabled title="Coming soon">
+                                                    Edit Profil
+                                                </button>
+                                                <button
+                                                    class="px-4 py-2 bg-slate-100 text-slate-600 rounded-lg hover:bg-slate-200 transition-colors dark:bg-slate-700 dark:text-slate-300 dark:hover:bg-slate-600 ml-2"
+                                                    disabled title="Coming soon">
+                                                    Ubah Password
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </main>
+                                    <%- include('../partials/bottom-nav') %>
+                            </div>
+    </div>
+
+    <%- include('../partials/footer') %>

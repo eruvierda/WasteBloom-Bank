@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bank Sampah Admin Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d6dfd",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#0f1723",
+                        "dark-sidebar": "#1e293b", 
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-100 min-h-screen flex justify-center">
+<!-- Mobile Container -->
+<div class="w-full max-w-md bg-white dark:bg-background-dark shadow-2xl relative overflow-hidden min-h-screen flex flex-col">
+<!-- Header Section -->
+<header class="bg-dark-sidebar text-white pt-12 pb-8 px-6 rounded-b-3xl relative z-10 shadow-lg">
+<div class="flex justify-between items-center mb-6">
+<button class="p-2 hover:bg-white/10 rounded-full transition-colors">
+<span class="material-icons">menu</span>
+</button>
+<div class="flex items-center space-x-3">
+<button class="p-2 hover:bg-white/10 rounded-full transition-colors relative">
+<span class="material-icons">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-dark-sidebar"></span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary">
+<img alt="Admin Profile Picture" class="w-full h-full object-cover" data-alt="Admin user profile photo showing a smiling man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDq2LU0o2cPG6pol-hfH9fkjv13luOzy1bzYVLl3I3cAgCmUhvETtHolETSAbDtT0nA5_C2DKGL6ZyKJ51YfxLv4_6b5xRUkrl4TXpEqy5dSXKZ0Lwj5NEvxiTTZCtq6RLIDFJnnaZc8sUCqhgYnlpPbrQcuTg522H6dK_YlXJGRE8UdhNx4J6_sVK_iIKForN8UrF8VVRS3iRAoILjGA05zIbTzrkjyPIqfFZi8z40ODMHA_B7lf9am6RlBImuHO1YwuPYR5SCxvo"/>
+</div>
+</div>
+</div>
+<div>
+<p class="text-slate-300 text-sm font-medium mb-1">Welcome back,</p>
+<h1 class="text-2xl font-bold">Admin Dashboard</h1>
+</div>
+<!-- Floating Stats Grid (Overlapping Header) -->
+<div class="absolute left-6 right-6 -bottom-16">
+<div class="bg-white dark:bg-slate-800 rounded-xl p-4 shadow-lg border border-slate-100 dark:border-slate-700 flex justify-between items-center">
+<div class="text-center w-1/2 border-r border-slate-100 dark:border-slate-700 pr-4">
+<div class="flex items-center justify-center space-x-2 text-primary mb-1">
+<span class="material-icons text-xl">group</span>
+<span class="text-xs font-semibold uppercase tracking-wide">Total Users</span>
+</div>
+<p class="text-2xl font-bold text-slate-800 dark:text-white">1,204</p>
+</div>
+<div class="text-center w-1/2 pl-4">
+<div class="flex items-center justify-center space-x-2 text-primary mb-1">
+<span class="material-icons text-xl">sync_alt</span>
+<span class="text-xs font-semibold uppercase tracking-wide">Transactions</span>
+</div>
+<p class="text-2xl font-bold text-slate-800 dark:text-white">3,429</p>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 px-6 pt-20 pb-24 overflow-y-auto no-scrollbar">
+<!-- Secondary Stats (Pending) -->
+<div class="grid grid-cols-2 gap-4 mb-8">
+<div class="bg-orange-50 dark:bg-orange-900/20 p-4 rounded-xl border border-orange-100 dark:border-orange-800/30 flex flex-col justify-between h-28">
+<div class="flex justify-between items-start">
+<div class="p-2 bg-orange-100 dark:bg-orange-800/40 text-orange-600 dark:text-orange-400 rounded-lg">
+<span class="material-icons text-xl">south_west</span>
+</div>
+<span class="text-xs font-bold bg-orange-200 dark:bg-orange-700/50 text-orange-800 dark:text-orange-200 px-2 py-0.5 rounded-full">Action</span>
+</div>
+<div>
+<p class="text-2xl font-bold text-slate-800 dark:text-white">12</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Pending Deposits</p>
+</div>
+</div>
+<div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-xl border border-blue-100 dark:border-blue-800/30 flex flex-col justify-between h-28">
+<div class="flex justify-between items-start">
+<div class="p-2 bg-blue-100 dark:bg-blue-800/40 text-blue-600 dark:text-blue-400 rounded-lg">
+<span class="material-icons text-xl">north_east</span>
+</div>
+</div>
+<div>
+<p class="text-2xl font-bold text-slate-800 dark:text-white">5</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Pending Withdrawals</p>
+</div>
+</div>
+</div>
+<!-- Needs Action Section -->
+<div class="mb-8">
+<div class="flex justify-between items-end mb-4">
+<h2 class="text-lg font-bold text-slate-800 dark:text-white">Needs Action</h2>
+<a class="text-sm text-primary font-medium hover:text-primary/80" href="#">View All</a>
+</div>
+<div class="space-y-3">
+<!-- Item 1 -->
+<div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 flex items-center justify-between">
+<div class="flex items-center space-x-3">
+<div class="bg-primary/10 text-primary p-2.5 rounded-full">
+<span class="material-icons text-lg">recycling</span>
+</div>
+<div>
+<h3 class="font-semibold text-sm text-slate-800 dark:text-white">Budi Santoso</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Plastic Bottles • <span class="font-medium text-slate-700 dark:text-slate-300">2.5 kg</span></p>
+</div>
+</div>
+<div class="flex space-x-2">
+<button class="w-9 h-9 flex items-center justify-center rounded-full bg-red-50 text-red-500 hover:bg-red-100 dark:bg-red-900/20 dark:text-red-400 transition-colors">
+<span class="material-icons text-lg">close</span>
+</button>
+<button class="w-9 h-9 flex items-center justify-center rounded-full bg-green-50 text-green-500 hover:bg-green-100 dark:bg-green-900/20 dark:text-green-400 transition-colors">
+<span class="material-icons text-lg">check</span>
+</button>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 flex items-center justify-between">
+<div class="flex items-center space-x-3">
+<div class="bg-amber-100 text-amber-600 dark:bg-amber-900/20 dark:text-amber-500 p-2.5 rounded-full">
+<span class="material-icons text-lg">archive</span>
+</div>
+<div>
+<h3 class="font-semibold text-sm text-slate-800 dark:text-white">Siti Aminah</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Cardboard • <span class="font-medium text-slate-700 dark:text-slate-300">5.0 kg</span></p>
+</div>
+</div>
+<div class="flex space-x-2">
+<button class="w-9 h-9 flex items-center justify-center rounded-full bg-red-50 text-red-500 hover:bg-red-100 dark:bg-red-900/20 dark:text-red-400 transition-colors">
+<span class="material-icons text-lg">close</span>
+</button>
+<button class="w-9 h-9 flex items-center justify-center rounded-full bg-green-50 text-green-500 hover:bg-green-100 dark:bg-green-900/20 dark:text-green-400 transition-colors">
+<span class="material-icons text-lg">check</span>
+</button>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 flex items-center justify-between">
+<div class="flex items-center space-x-3">
+<div class="bg-purple-100 text-purple-600 dark:bg-purple-900/20 dark:text-purple-500 p-2.5 rounded-full">
+<span class="material-icons text-lg">kitchen</span>
+</div>
+<div>
+<h3 class="font-semibold text-sm text-slate-800 dark:text-white">Rizky Febian</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Metal Cans • <span class="font-medium text-slate-700 dark:text-slate-300">1.2 kg</span></p>
+</div>
+</div>
+<div class="flex space-x-2">
+<button class="w-9 h-9 flex items-center justify-center rounded-full bg-red-50 text-red-500 hover:bg-red-100 dark:bg-red-900/20 dark:text-red-400 transition-colors">
+<span class="material-icons text-lg">close</span>
+</button>
+<button class="w-9 h-9 flex items-center justify-center rounded-full bg-green-50 text-green-500 hover:bg-green-100 dark:bg-green-900/20 dark:text-green-400 transition-colors">
+<span class="material-icons text-lg">check</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Analytics Chart Section -->
+<div class="bg-white dark:bg-slate-800 p-5 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700">
+<div class="flex justify-between items-center mb-6">
+<h2 class="text-base font-bold text-slate-800 dark:text-white">Monthly Collection</h2>
+<select class="bg-background-light dark:bg-slate-900 border-none text-xs font-medium text-slate-600 dark:text-slate-400 rounded px-2 py-1 outline-none focus:ring-1 focus:ring-primary">
+<option>Last 6 Months</option>
+<option>Last Year</option>
+</select>
+</div>
+<!-- Simple CSS Bar Chart -->
+<div class="flex items-end justify-between h-32 w-full gap-2 pt-2">
+<!-- Bar Group -->
+<div class="flex flex-col items-center flex-1 group cursor-pointer">
+<div class="w-full relative h-24 flex items-end bg-background-light dark:bg-slate-700/30 rounded-t-sm overflow-hidden">
+<div class="w-full bg-primary/40 group-hover:bg-primary transition-all duration-300" style="height: 40%;"></div>
+</div>
+<span class="text-[10px] text-slate-400 mt-2 font-medium">Aug</span>
+</div>
+<div class="flex flex-col items-center flex-1 group cursor-pointer">
+<div class="w-full relative h-24 flex items-end bg-background-light dark:bg-slate-700/30 rounded-t-sm overflow-hidden">
+<div class="w-full bg-primary/40 group-hover:bg-primary transition-all duration-300" style="height: 65%;"></div>
+</div>
+<span class="text-[10px] text-slate-400 mt-2 font-medium">Sep</span>
+</div>
+<div class="flex flex-col items-center flex-1 group cursor-pointer">
+<div class="w-full relative h-24 flex items-end bg-background-light dark:bg-slate-700/30 rounded-t-sm overflow-hidden">
+<div class="w-full bg-primary/40 group-hover:bg-primary transition-all duration-300" style="height: 50%;"></div>
+</div>
+<span class="text-[10px] text-slate-400 mt-2 font-medium">Oct</span>
+</div>
+<div class="flex flex-col items-center flex-1 group cursor-pointer">
+<div class="w-full relative h-24 flex items-end bg-background-light dark:bg-slate-700/30 rounded-t-sm overflow-hidden">
+<div class="w-full bg-primary/40 group-hover:bg-primary transition-all duration-300" style="height: 85%;"></div>
+</div>
+<span class="text-[10px] text-slate-400 mt-2 font-medium">Nov</span>
+</div>
+<div class="flex flex-col items-center flex-1 group cursor-pointer">
+<div class="w-full relative h-24 flex items-end bg-background-light dark:bg-slate-700/30 rounded-t-sm overflow-hidden">
+<div class="w-full bg-primary/60 group-hover:bg-primary transition-all duration-300" style="height: 70%;"></div>
+</div>
+<span class="text-[10px] text-slate-400 mt-2 font-medium">Dec</span>
+</div>
+<div class="flex flex-col items-center flex-1 group cursor-pointer">
+<div class="w-full relative h-24 flex items-end bg-background-light dark:bg-slate-700/30 rounded-t-sm overflow-hidden">
+<div class="w-full bg-primary group-hover:bg-primary transition-all duration-300" style="height: 95%;"></div>
+</div>
+<span class="text-[10px] text-slate-800 dark:text-white mt-2 font-bold">Jan</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation / Floating Action -->
+<div class="absolute bottom-0 left-0 right-0 p-4 pb-6 bg-gradient-to-t from-white via-white to-transparent dark:from-background-dark dark:via-background-dark pointer-events-none">
+<div class="flex justify-center pointer-events-auto">
+<button class="flex items-center space-x-2 bg-dark-sidebar text-white px-6 py-3 rounded-full shadow-xl hover:bg-slate-800 transition-transform active:scale-95">
+<span class="material-icons text-xl">qr_code_scanner</span>
+<span class="font-medium text-sm">Scan User QR</span>
+</button>
+</div>
+</div>
+</div>
+</body></html>

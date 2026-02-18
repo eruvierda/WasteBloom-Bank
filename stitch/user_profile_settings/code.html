@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bank Sampah - User Profile Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d6dfd",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#0f1723",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-100 antialiased selection:bg-primary/20">
+<!-- Mobile Container -->
+<div class="max-w-md mx-auto min-h-screen bg-white dark:bg-slate-900 shadow-2xl overflow-hidden relative pb-10">
+<!-- Header / Nav -->
+<header class="sticky top-0 z-10 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-100 dark:border-slate-800 px-4 py-3 flex items-center justify-between">
+<button class="p-2 -ml-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-300">
+<span class="material-icons text-[24px]">arrow_back_ios_new</span>
+</button>
+<h1 class="text-lg font-semibold text-slate-900 dark:text-white">Profile</h1>
+<div class="w-10"></div> <!-- Spacer for centering -->
+</header>
+<!-- Main Content -->
+<main class="px-5 pt-6 space-y-8">
+<!-- User Identity Section -->
+<div class="flex flex-col items-center text-center space-y-4">
+<div class="relative group cursor-pointer">
+<div class="w-24 h-24 rounded-full overflow-hidden ring-4 ring-primary/10 dark:ring-primary/20">
+<img alt="Profile Avatar" class="w-full h-full object-cover" data-alt="Portrait of a smiling man looking at camera" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcDN0mSZQWpCaxBP6nnddBT9-4YSUQiSWZlgC6XZKPjFoEM__QkIt3bktAK9qjdnXL3flWiGdVRTZ5Cj5_nGWKZr9EabSQn4OGcRnkr9WkCCb-EDVFS3qDoe-gWTztx2nKDJAu_sYDuGv26czFBXtRr_kQf011d4yCKTCslrS67n3UMZJkRFq9e538_AtmzpUZHvPRtGABbm-bKSixDCjPboPYHHv27h0AuTMXHPHA3klkJtISaduVQ5L62lTF2BpR9bq2XE7i6fU"/>
+</div>
+<div class="absolute bottom-0 right-0 bg-primary text-white p-1.5 rounded-full border-2 border-white dark:border-slate-900 shadow-sm">
+<span class="material-icons text-[14px] leading-none">edit</span>
+</div>
+</div>
+<div>
+<h2 class="text-xl font-bold text-slate-900 dark:text-white">Budi Santoso</h2>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">budi.santoso@email.com</p>
+</div>
+</div>
+<!-- Balance Card -->
+<div class="bg-primary rounded-xl p-5 shadow-lg shadow-primary/20 relative overflow-hidden text-white transform transition-transform active:scale-[0.98]">
+<!-- Abstract decorative circles -->
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-white/10 rounded-full blur-2xl"></div>
+<div class="absolute -left-4 -bottom-4 w-20 h-20 bg-white/10 rounded-full blur-xl"></div>
+<div class="relative flex items-center justify-between">
+<div>
+<p class="text-primary-100 text-sm font-medium mb-1 opacity-90">Total Waste Balance</p>
+<h3 class="text-3xl font-bold tracking-tight">Rp 45.200</h3>
+</div>
+<div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm">
+<span class="material-icons text-white">account_balance_wallet</span>
+</div>
+</div>
+<div class="mt-4 pt-3 border-t border-white/10 flex items-center text-xs font-medium text-white/80 space-x-1">
+<span class="material-icons text-[14px]">eco</span>
+<span>Level: Green Warrior</span>
+</div>
+</div>
+<!-- Settings Group: Personal Information -->
+<div class="space-y-3">
+<h3 class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 pl-1">Personal Information</h3>
+<div class="bg-background-light dark:bg-slate-800/50 rounded-xl overflow-hidden border border-slate-100 dark:border-slate-800">
+<!-- Item 1 -->
+<button class="w-full px-4 py-3.5 flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors group text-left">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary dark:text-primary-400">
+<span class="material-icons text-[18px]">person</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-medium text-slate-900 dark:text-white">Full Name</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Budi Santoso</p>
+</div>
+</div>
+<span class="material-icons text-slate-400 text-[20px] group-hover:text-primary transition-colors">chevron_right</span>
+</button>
+<div class="h-px bg-slate-200 dark:bg-slate-700/50 mx-4"></div>
+<!-- Item 2 -->
+<button class="w-full px-4 py-3.5 flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors group text-left">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary dark:text-primary-400">
+<span class="material-icons text-[18px]">phone</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-medium text-slate-900 dark:text-white">Phone Number</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">+62 812 3456 7890</p>
+</div>
+</div>
+<span class="material-icons text-slate-400 text-[20px] group-hover:text-primary transition-colors">chevron_right</span>
+</button>
+<div class="h-px bg-slate-200 dark:bg-slate-700/50 mx-4"></div>
+<!-- Item 3 -->
+<button class="w-full px-4 py-3.5 flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors group text-left">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary dark:text-primary-400">
+<span class="material-icons text-[18px]">location_on</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-medium text-slate-900 dark:text-white">Address</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 truncate max-w-[180px]">Jl. Mawar No. 12, Jakarta Selatan</p>
+</div>
+</div>
+<span class="material-icons text-slate-400 text-[20px] group-hover:text-primary transition-colors">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Settings Group: Security -->
+<div class="space-y-3">
+<h3 class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 pl-1">Security</h3>
+<div class="bg-background-light dark:bg-slate-800/50 rounded-xl overflow-hidden border border-slate-100 dark:border-slate-800">
+<!-- Item 1 -->
+<button class="w-full px-4 py-3.5 flex items-center justify-between hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors group text-left">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary dark:text-primary-400">
+<span class="material-icons text-[18px]">lock</span>
+</div>
+<span class="text-sm font-medium text-slate-900 dark:text-white">Change Password</span>
+</div>
+<span class="material-icons text-slate-400 text-[20px] group-hover:text-primary transition-colors">chevron_right</span>
+</button>
+<div class="h-px bg-slate-200 dark:bg-slate-700/50 mx-4"></div>
+<!-- Item 2 -->
+<div class="w-full px-4 py-3.5 flex items-center justify-between">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary dark:text-primary-400">
+<span class="material-icons text-[18px]">fingerprint</span>
+</div>
+<span class="text-sm font-medium text-slate-900 dark:text-white">Biometric Login</span>
+</div>
+<!-- Toggle Switch -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-slate-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</div>
+<!-- Logout Button -->
+<div class="pt-4 pb-8">
+<button class="w-full py-3.5 px-4 rounded-xl bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 font-semibold text-sm hover:bg-red-100 dark:hover:bg-red-900/30 transition-colors flex items-center justify-center space-x-2">
+<span class="material-icons text-[20px]">logout</span>
+<span>Log Out</span>
+</button>
+<p class="text-center text-xs text-slate-400 mt-6">Version 1.0.2</p>
+</div>
+</main>
+<!-- Bottom Tab Bar (Contextual visual, non-functional) -->
+<nav class="absolute bottom-0 w-full bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 pb-safe">
+<div class="flex justify-around items-center h-16 px-2">
+<a class="flex flex-col items-center justify-center w-full h-full text-slate-400 hover:text-primary space-y-1" href="#">
+<span class="material-icons text-[24px]">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center w-full h-full text-slate-400 hover:text-primary space-y-1" href="#">
+<span class="material-icons text-[24px]">history</span>
+<span class="text-[10px] font-medium">Activity</span>
+</a>
+<!-- Middle Scan Button Placeholder -->
+<div class="relative -top-5">
+<button class="w-14 h-14 bg-primary rounded-full shadow-lg shadow-primary/40 flex items-center justify-center text-white transform hover:scale-105 transition-transform">
+<span class="material-icons text-[28px]">qr_code_scanner</span>
+</button>
+</div>
+<a class="flex flex-col items-center justify-center w-full h-full text-slate-400 hover:text-primary space-y-1" href="#">
+<span class="material-icons text-[24px]">redeem</span>
+<span class="text-[10px] font-medium">Rewards</span>
+</a>
+<a class="flex flex-col items-center justify-center w-full h-full text-primary space-y-1" href="#">
+<span class="material-icons text-[24px]">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</a>
+</div>
+</nav>
+</div>
+</body></html>

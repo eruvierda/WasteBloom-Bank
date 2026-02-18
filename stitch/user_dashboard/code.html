@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bank Sampah Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#0d6dfd",
+              "background-light": "#f5f7f8",
+              "background-dark": "#0f1723",
+              "success": "#22c55e",
+              "warning": "#f59e0b",
+              "danger": "#ef4444",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+            boxShadow: {
+                'soft': '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-100 min-h-screen pb-24">
+<!-- Header Section -->
+<header class="pt-12 pb-4 px-6 bg-white dark:bg-[#1a2332] sticky top-0 z-20 shadow-sm border-b border-slate-100 dark:border-slate-800">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="User Profile" class="w-12 h-12 rounded-full object-cover border-2 border-primary" data-alt="Portrait of a smiling young man in a casual shirt" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCy4FXVkX_kH38HXizMJnsH2yH7nvWf1dxl9KiTwQa_RtD29R_75tIyXvF40Hyd5wXNXGcqJEQHuRs659Ayf1qAxMQTTN7pAM7OYdvNRB6JWwiFIQMonvUiIF8YaE_cwS5-gx2r2UIzEStCCx8s04dWBVeP8VBCOqC175WOzWBILaW2ZgDG9lYmnf5s4FB3n4mLGhlAhzJGDqN2YBZy8nep-B_xU4Be1cytq9riqyy3Lqw6yrHUmRocxy1i8vMPRU4ahXxwspHdnig"/>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-success rounded-full border-2 border-white dark:border-[#1a2332]"></div>
+</div>
+<div>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Welcome back,</p>
+<h1 class="text-lg font-bold text-slate-900 dark:text-white">Budi Santoso</h1>
+</div>
+</div>
+<button class="relative p-2 rounded-full bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+<span class="material-icons-round text-slate-600 dark:text-slate-300">notifications</span>
+<span class="absolute top-2 right-2 w-2.5 h-2.5 bg-danger rounded-full border-2 border-white dark:border-slate-800"></span>
+</button>
+</div>
+</header>
+<main class="px-5 mt-6 space-y-8">
+<!-- Stat Cards Grid -->
+<section>
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-lg font-bold text-slate-800 dark:text-white">Overview</h2>
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400">Updated just now</span>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<!-- Balance Card (Blue/Primary) -->
+<div class="bg-primary p-4 rounded-xl shadow-soft text-white relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-white opacity-10 rounded-full group-hover:scale-110 transition-transform duration-500"></div>
+<div class="flex justify-between items-start mb-3">
+<div class="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
+<span class="material-icons-round text-white text-xl">account_balance_wallet</span>
+</div>
+</div>
+<p class="text-primary-100 text-xs font-medium mb-1 opacity-90">Current Balance</p>
+<h3 class="text-xl font-bold">Rp 150k</h3>
+</div>
+<!-- Transactions Card (Green) -->
+<div class="bg-white dark:bg-[#1e293b] p-4 rounded-xl shadow-soft border-l-4 border-success relative">
+<div class="flex justify-between items-start mb-3">
+<div class="p-2 bg-success/10 rounded-lg">
+<span class="material-icons-round text-success text-xl">recycling</span>
+</div>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-medium mb-1">Waste Recycled</p>
+<h3 class="text-xl font-bold text-slate-800 dark:text-white">12 <span class="text-xs font-normal text-slate-400">Items</span></h3>
+</div>
+<!-- Weight Card (Yellow) -->
+<div class="bg-white dark:bg-[#1e293b] p-4 rounded-xl shadow-soft border-l-4 border-warning relative">
+<div class="flex justify-between items-start mb-3">
+<div class="p-2 bg-warning/10 rounded-lg">
+<span class="material-icons-round text-warning text-xl">scale</span>
+</div>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-medium mb-1">Total Weight</p>
+<h3 class="text-xl font-bold text-slate-800 dark:text-white">45 <span class="text-xs font-normal text-slate-400">kg</span></h3>
+</div>
+<!-- Total Earnings Card (Red) -->
+<div class="bg-white dark:bg-[#1e293b] p-4 rounded-xl shadow-soft border-l-4 border-danger relative">
+<div class="flex justify-between items-start mb-3">
+<div class="p-2 bg-danger/10 rounded-lg">
+<span class="material-icons-round text-danger text-xl">trending_up</span>
+</div>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-medium mb-1">Total Earnings</p>
+<h3 class="text-xl font-bold text-slate-800 dark:text-white">1.2M</h3>
+</div>
+</div>
+</section>
+<!-- Quick Actions Slider -->
+<section>
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-lg font-bold text-slate-800 dark:text-white">Quick Actions</h2>
+</div>
+<div class="flex overflow-x-auto gap-4 pb-4 -mx-5 px-5 no-scrollbar snap-x">
+<!-- Action 1: Deposit -->
+<div class="snap-center shrink-0 w-64 bg-white dark:bg-[#1e293b] rounded-2xl p-5 shadow-soft border border-slate-100 dark:border-slate-800 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-20 h-20 bg-primary/5 rounded-bl-full -mr-4 -mt-4"></div>
+<div class="flex items-center gap-4 mb-3">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-icons-round">delete_outline</span>
+</div>
+<div>
+<h3 class="font-bold text-slate-800 dark:text-white">Deposit Waste</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400">Schedule pickup</p>
+</div>
+</div>
+<button class="w-full mt-2 py-2.5 bg-primary text-white text-sm font-medium rounded-lg hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20">
+                        Start Deposit
+                    </button>
+</div>
+<!-- Action 2: Withdraw -->
+<div class="snap-center shrink-0 w-64 bg-white dark:bg-[#1e293b] rounded-2xl p-5 shadow-soft border border-slate-100 dark:border-slate-800 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-20 h-20 bg-success/5 rounded-bl-full -mr-4 -mt-4"></div>
+<div class="flex items-center gap-4 mb-3">
+<div class="w-12 h-12 rounded-full bg-success/10 flex items-center justify-center text-success">
+<span class="material-icons-round">payments</span>
+</div>
+<div>
+<h3 class="font-bold text-slate-800 dark:text-white">Withdraw</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400">Transfer funds</p>
+</div>
+</div>
+<button class="w-full mt-2 py-2.5 bg-white border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-sm font-medium rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                        Request Payout
+                    </button>
+</div>
+<!-- Action 3: Scan QR -->
+<div class="snap-center shrink-0 w-64 bg-white dark:bg-[#1e293b] rounded-2xl p-5 shadow-soft border border-slate-100 dark:border-slate-800 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-20 h-20 bg-warning/5 rounded-bl-full -mr-4 -mt-4"></div>
+<div class="flex items-center gap-4 mb-3">
+<div class="w-12 h-12 rounded-full bg-warning/10 flex items-center justify-center text-warning">
+<span class="material-icons-round">qr_code_scanner</span>
+</div>
+<div>
+<h3 class="font-bold text-slate-800 dark:text-white">Scan QR</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400">Direct deposit</p>
+</div>
+</div>
+<button class="w-full mt-2 py-2.5 bg-white border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-sm font-medium rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                        Open Scanner
+                    </button>
+</div>
+</div>
+</section>
+<!-- Recent Transactions -->
+<section>
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-lg font-bold text-slate-800 dark:text-white">Recent Activity</h2>
+<button class="text-sm font-medium text-primary hover:text-primary/80">View All</button>
+</div>
+<div class="bg-white dark:bg-[#1e293b] rounded-2xl shadow-soft border border-slate-100 dark:border-slate-800 divide-y divide-slate-100 dark:divide-slate-700">
+<!-- Item 1: Pending -->
+<div class="p-4 flex items-center justify-between group cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors rounded-t-2xl">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+<span class="material-icons-round text-slate-500 text-lg">local_drink</span> <!-- Plastic bottle icon metaphor -->
+</div>
+<div>
+<h4 class="text-sm font-semibold text-slate-900 dark:text-white">Plastic Deposit</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400">Today, 10:30 AM • 5.2 kg</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-primary">+Rp 15.600</p>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-warning/10 text-warning mt-1">
+                            Pending
+                        </span>
+</div>
+</div>
+<!-- Item 2: Succeeded -->
+<div class="p-4 flex items-center justify-between group cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+<span class="material-icons-round text-slate-500 text-lg">description</span> <!-- Paper icon metaphor -->
+</div>
+<div>
+<h4 class="text-sm font-semibold text-slate-900 dark:text-white">Paper &amp; Cardboard</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400">Yesterday, 04:15 PM • 12 kg</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-primary">+Rp 24.000</p>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-success/10 text-success mt-1">
+                            Succeeded
+                        </span>
+</div>
+</div>
+<!-- Item 3: Withdrawal -->
+<div class="p-4 flex items-center justify-between group cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors rounded-b-2xl">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-danger/10 flex items-center justify-center">
+<span class="material-icons-round text-danger text-lg">arrow_outward</span>
+</div>
+<div>
+<h4 class="text-sm font-semibold text-slate-900 dark:text-white">Balance Withdrawal</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400">Aug 24, 09:00 AM • Bank Transfer</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold text-slate-900 dark:text-white">-Rp 50.000</p>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-success/10 text-success mt-1">
+                            Succeeded
+                        </span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 right-0 bg-white dark:bg-[#1a2332] border-t border-slate-200 dark:border-slate-800 px-6 py-3 pb-8 z-50">
+<ul class="flex justify-between items-center">
+<li>
+<a class="flex flex-col items-center gap-1 group" href="#">
+<span class="material-icons-round text-primary text-2xl group-hover:scale-110 transition-transform">dashboard</span>
+<span class="text-[10px] font-medium text-primary">Home</span>
+</a>
+</li>
+<li>
+<a class="flex flex-col items-center gap-1 group" href="#">
+<span class="material-icons-round text-slate-400 text-2xl group-hover:text-primary transition-colors">qr_code_scanner</span>
+<span class="text-[10px] font-medium text-slate-400 group-hover:text-primary transition-colors">Scan</span>
+</a>
+</li>
+<li class="relative -top-6">
+<button class="w-14 h-14 bg-primary rounded-full shadow-lg shadow-primary/40 flex items-center justify-center text-white hover:bg-blue-600 transition-colors hover:scale-105 active:scale-95 transform duration-200">
+<span class="material-icons-round text-3xl">add</span>
+</button>
+</li>
+<li>
+<a class="flex flex-col items-center gap-1 group" href="#">
+<span class="material-icons-round text-slate-400 text-2xl group-hover:text-primary transition-colors">history</span>
+<span class="text-[10px] font-medium text-slate-400 group-hover:text-primary transition-colors">History</span>
+</a>
+</li>
+<li>
+<a class="flex flex-col items-center gap-1 group" href="#">
+<span class="material-icons-round text-slate-400 text-2xl group-hover:text-primary transition-colors">person</span>
+<span class="text-[10px] font-medium text-slate-400 group-hover:text-primary transition-colors">Profile</span>
+</a>
+</li>
+</ul>
+</nav>
+</body></html>

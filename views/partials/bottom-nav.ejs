@@ -1,0 +1,44 @@
+<nav
+    class="lg:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-dark-sidebar border-t border-slate-200 dark:border-slate-700 px-6 py-3 pb-safe z-50">
+    <ul class="flex justify-between items-center">
+        <li>
+            <a class="flex flex-col items-center gap-1 group <%= path === '/dashboard' || path === '/admin/dashboard' ? 'text-primary' : 'text-slate-400' %>"
+                href="<%= user && user.role === 'admin' ? '/admin/dashboard' : '/dashboard' %>">
+                <span class="material-icons-round text-2xl group-hover:scale-110 transition-transform">dashboard</span>
+                <span class="text-[10px] font-medium">Home</span>
+            </a>
+        </li>
+        <% if (user && user.role !=='admin' ) { %>
+            <li>
+                <a class="flex flex-col items-center gap-1 group <%= path === '/transactions' ? 'text-primary' : 'text-slate-400' %>"
+                    href="/transactions">
+                    <span
+                        class="material-icons-round text-2xl group-hover:text-primary transition-colors">history</span>
+                    <span class="text-[10px] font-medium group-hover:text-primary transition-colors">History</span>
+                </a>
+            </li>
+            <li class="relative -top-6">
+                <a href="/deposit"
+                    class="w-14 h-14 bg-primary rounded-full shadow-lg shadow-primary/40 flex items-center justify-center text-white hover:bg-blue-600 transition-colors hover:scale-105 active:scale-95 transform duration-200">
+                    <span class="material-icons-round text-3xl">add</span>
+                </a>
+            </li>
+            <li>
+                <a class="flex flex-col items-center gap-1 group <%= path === '/withdraw' ? 'text-primary' : 'text-slate-400' %>"
+                    href="/withdraw">
+                    <span
+                        class="material-icons-round text-2xl group-hover:text-primary transition-colors">account_balance_wallet</span>
+                    <span class="text-[10px] font-medium group-hover:text-primary transition-colors">Wallet</span>
+                </a>
+            </li>
+            <% } %>
+                <li>
+                    <a class="flex flex-col items-center gap-1 group <%= path === '/profile' ? 'text-primary' : 'text-slate-400' %>"
+                        href="/profile">
+                        <span
+                            class="material-icons-round text-2xl group-hover:text-primary transition-colors">person</span>
+                        <span class="text-[10px] font-medium group-hover:text-primary transition-colors">Profile</span>
+                    </a>
+                </li>
+    </ul>
+</nav>
